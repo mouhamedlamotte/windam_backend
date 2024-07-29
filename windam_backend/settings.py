@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
-from constants import DJANGO_SECRET_KEY
+from constants import DJANGO_SECRET_KEY, POSTGRES_USER, POSTGRES_DB_NAME, POSTGRES_PASSWORD, POSTGRES_HOST
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,10 +93,13 @@ WSGI_APPLICATION = 'windam_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': POSTGRES_DB_NAME,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
+        'HOST': POSTGRES_HOST,
+        'PORT': '54787',
+    }}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

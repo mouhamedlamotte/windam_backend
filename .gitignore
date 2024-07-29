@@ -3,3 +3,6 @@ __pycache__
 /**/__pycache/
 /**/migrations/__pycache__/
 /**/migrations/0*.py
+
+.env
+.env/
