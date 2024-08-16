@@ -17,7 +17,7 @@ DEBUG = True
 
 AUTH_USER_MODEL = 'accounts.User'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["windam-backend.onrender.com"]
 
 # Application definition
 
@@ -54,7 +54,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'windam_backend.urls'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3000", "https://windam-backend.onrender.com"
 ]
 
 CORS_ALLOW_HEADERS = [
