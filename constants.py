@@ -4,6 +4,9 @@ import os
 
 load_dotenv()
 
+
+DEBUG = True if os.getenv("ENV") === "dev" : False
+
 DJANGO_SECRET_KEY = os.getenv("DJANGO_SECRET_KEY") or 'default_secret_key'
 
 

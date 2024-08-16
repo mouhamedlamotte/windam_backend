@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
-from constants import DJANGO_SECRET_KEY, POSTGRES_USER, POSTGRES_DB_NAME, POSTGRES_PASSWORD, POSTGRES_HOST, GMAIL_STMP_PW, GMAIL_STMP_USERNAME
+from constants import DJANGO_SECRET_KEY, POSTGRES_USER, POSTGRES_DB_NAME, POSTGRES_PASSWORD, POSTGRES_HOST, GMAIL_STMP_PW, GMAIL_STMP_USERNAME, DEBUG as DBG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,7 +13,7 @@ import os
 SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DBG
 
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -121,6 +121,16 @@ DATABASES = {
         'PORT': '5432',
     }
 }   
+
+# Configuration pour les domaines autorisés pour les cookies CSRF
+CSRF_COOKIE_DOMAIN = 'windam-backend.onrender.com'  # Remplacez par votre domaine principal
+CSRF_TRUSTED_ORIGINS = ['https://windam-backend.onrender.com', "http://localhost:3000"]  # Ajoutez tous les sous-domaines nécessaires
+
+# Paramètres de sécurité supplémentaires pour les cookies
+CSRF_COOKIE_SECURE = True  # Assurez-vous que c'est True en production
+CSRF_COOKIE_HTTPONLY = True
+CSRF_USE_SESSIONS = True
+
 
 
 # Password validation
