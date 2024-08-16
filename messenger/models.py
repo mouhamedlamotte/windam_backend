@@ -17,10 +17,13 @@ class ChatRoom(models.Model):
     def __str__(self):
         if self.private:
             try : 
-                return  f"discussion : {self.name} entre {self.members.all()[0].username} et {self.members.all()[1].username}"
+                return  f"discussion : {self.name} entre {self.members.all()[0].email} et {self.members.all()[1].email}"
             except :
                 return  f"discussion : {self.name} de {self.members.all()[0].username}"
         return f"Groupe : {self.group_name}"
+    
+    class Meta:
+        ordering = ['-updated_at']
     
     
 class ChatroomMessage(models.Model):

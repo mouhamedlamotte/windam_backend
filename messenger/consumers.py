@@ -36,7 +36,7 @@ class ChatRoomConsumer(WebsocketConsumer):
             content=content,
             chatroom = self.chatroom
         )
-
+        self.update_last_message(message)
         event = {
             'type': 'message_handler',
             'message_pk' : message.pk
@@ -56,3 +56,11 @@ class ChatRoomConsumer(WebsocketConsumer):
         async_to_sync(self.channel_layer.group_discard)(
             self.chatroom_name, self.channel_name
         )
+    def update_last_message(self, message):
+        self.chatroom.last_message = {
+            'content': message.content,
+            'created_at': message.created_at.isoformat(),
+            'type': message.type
+        }
+        self.chatroom.last_message_by = message.sender
+        self.chatroom.save()

@@ -102,15 +102,13 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('redis://default:SuiURtrTNvbcqQzIEeSWIanKqGzRayhP@viaduct.proxy.rlwy.net:37672')],
-            # 'hosts' : ["redis://localhost/1"]
+            'hosts': [('redis://localhost:6379')] if DEBUG else [('redis://default:SuiURtrTNvbcqQzIEeSWIanKqGzRayhP@viaduct.proxy.rlwy.net:37672')],
         }   
     }
 }
 
-# Database
+# Base de données
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-# Sqlite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

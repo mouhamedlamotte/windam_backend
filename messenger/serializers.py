@@ -12,6 +12,8 @@ class PrivateChatroomSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatRoom
         fields = ['pk','name', 'user', 'last_message', 'last_message_by']
+        ordering = ['-updated_at']
+        
     
     def get_user(self, obj, *args, **kwargs):
         request = self.context.get('request')
@@ -29,9 +31,12 @@ class GroupChatroomSerializer(serializers.ModelSerializer):
     last_message_by = UserAccountPubliqueSerializer(read_only=True)
     
     
+    
     class Meta:
         model = ChatRoom
         fields = ['pk','name', 'created_by', 'last_message_by', 'last_message', 'group_name', 'members', 'created_at']
+        ordering = ['-updated_at']
+        
         
         
 class ChatroomMessageSerializer(serializers.ModelSerializer):
