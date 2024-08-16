@@ -54,7 +54,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'windam_backend.urls'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", "https://windam-backend.onrender.com"
+    "http://localhost:3000", "https://windam-backend.onrender.com", "https://windampro.vercel.app"
 ]
 
 CORS_ALLOW_HEADERS = [
@@ -124,7 +124,7 @@ DATABASES = {
 
 # Configuration pour les domaines autorisés pour les cookies CSRF
 CSRF_COOKIE_DOMAIN = 'windam-backend.onrender.com'  # Remplacez par votre domaine principal
-CSRF_TRUSTED_ORIGINS = ['https://windam-backend.onrender.com', "http://localhost:3000"]  # Ajoutez tous les sous-domaines nécessaires
+CSRF_TRUSTED_ORIGINS = ['https://windam-backend.onrender.com', "http://localhost:3000", "https://windampro.vercel.app"]  # Ajoutez tous les sous-domaines nécessaires
 
 # Paramètres de sécurité supplémentaires pour les cookies
 CSRF_COOKIE_SECURE = True  # Assurez-vous que c'est True en production
