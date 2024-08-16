@@ -104,7 +104,7 @@ CHANNEL_LAYERS = {
         'CONFIG': {
             'hosts': [('redis://default:SuiURtrTNvbcqQzIEeSWIanKqGzRayhP@viaduct.proxy.rlwy.net:37672')],
             # 'hosts' : ["redis://localhost/1"]
-        }
+        }   
     }
 }
 
