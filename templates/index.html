@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Handshake</title>
+</head>
+<body>
+    <h1>WebSocket Handshake</h1>
+    <form id="messageForm">
+        <input type="text" id="messageInput" name="message" placeholder="Type your message">
+        <input type="submit" value="Send">
+    </form>
+    <div id="messages"></div>
+    <script>
+        // Crée une connexion WebSocket
+        const ws = new WebSocket('ws://localhost:8000/ws/messenger/chatroom/aQoJV7HKsKm2uch5hfujsx/');
+        https://github.com/mouhamedlamotte/promptmaster
+        ws.onopen = function(event) {
+            console.log('WebSocket is connected.');
+        };
+
+        ws.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            console.log(data);
+            document.getElementById('messages').innerHTML += data.message.sender.username + ' : ' + data.message.content + '<br>';
+        };
+
+        ws.onclose = function(event) {
+            console.log('WebSocket is closed now.');
+        };
+
+        ws.onerror = function(event) {
+            console.error('WebSocket error observed:', event);
+        };
+
+        // Gestion de l'envoi du formulaire
+        document.querySelector('#messageForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+            
+            const input = document.querySelector('#messageInput');
+            const message = input.value;
+
+            if (message) {
+                // Envoie le message au serveur WebSocket
+                ws.send(JSON.stringify({
+                    type: 'text',
+                    content: message
+                }));
+                input.value = ''; // Efface le champ de saisie
+            }
+        });
+    </script>
+</body>
+</html>

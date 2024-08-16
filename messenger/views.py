@@ -1,3 +1,4 @@
+from typing import Any
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 
@@ -51,7 +52,7 @@ class ChatroomMessagesView(generics.ListAPIView):
         chatroom_name = self.kwargs.get('chatroom__name')
         chatroom = ChatRoom.objects.filter(name=chatroom_name).first()
         if chatroom and self.request.user in chatroom.members.all():
-            return ChatroomMessage.objects.filter(chatroom=chatroom)
+            return ChatroomMessage.objects.filter(chatroom=chatroom).order_by('created_at')
         return ChatroomMessage.objects.none()
     
 
@@ -70,3 +71,10 @@ class ChatroomMessagesView(generics.ListAPIView):
             'chats': chats,
             'chatroom': chatroom_data
         })
+
+    def get(self, request, *args, **kwargs):
+        headers = self.request.headers
+        print(headers)
+        user = request.user
+        print(user)
+        return super().get(request, *args, **kwargs)

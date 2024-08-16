@@ -2,7 +2,7 @@ from rest_framework import generics, permissions
 
 from .models import User
 
-from .serializers import UserAccountSerializer
+from .serializers import UserAccountSerializer, UpdateUserAccountSerializer
 
 from windam_backend.permissions import IsOwner, IsSuperUser
 
@@ -17,7 +17,7 @@ class ListUserAccountView(generics.ListAPIView):
 
 class RetrieveUpdateDestroyAccountView(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
-    serializer_class = UserAccountSerializer
+    serializer_class = UpdateUserAccountSerializer
 
     def get_permissions(self):
         try:

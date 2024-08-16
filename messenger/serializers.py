@@ -40,5 +40,6 @@ class ChatroomMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatroomMessage
         fields = ['pk','sender', 'type', 'file', 'content', 'seen', 'created_at']
+        ordering = ['-created_at']
         
         

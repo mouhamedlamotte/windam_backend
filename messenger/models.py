@@ -15,7 +15,12 @@ class ChatRoom(models.Model):
     last_message = models.JSONField(null=True, blank=True)
     last_message_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='last_message_by', null=True, blank=True)
     def __str__(self):
-        return self.name
+        if self.private:
+            try : 
+                return  f"discussion : {self.name} entre {self.members.all()[0].username} et {self.members.all()[1].username}"
+            except :
+                return  f"discussion : {self.name} de {self.members.all()[0].username}"
+        return f"Groupe : {self.group_name}"
     
     
 class ChatroomMessage(models.Model):

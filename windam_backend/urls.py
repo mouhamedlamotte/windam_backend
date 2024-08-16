@@ -16,11 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import handshake_view
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 urlpatterns = [
+    path('', handshake_view),
     path('admin/', admin.site.urls),
     path("api/users/", include('accounts.urls')),
     path("api/auth/", include('authentication.urls')),
     path("api/messenger/", include('messenger.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

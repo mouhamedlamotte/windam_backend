@@ -26,14 +26,15 @@ class UserAccountSerializer(serializers.ModelSerializer):
             'is_email_verified' : {'read_only' : True},
             'is_active' : {'read_only' : True},
             'is_staff' : {'read_only' : True},
-            'is_superuser' : {'read_only' : True}
+            'is_superuser' : {'read_only' : True},
+            'date_joined' : {'read_only' : True},
             }
         
     
         
         
     def create(self, validated_data):
-        validated_data['is_active'] = False
+        # validated_data['is_active'] = False
         user = User(
             **validated_data
         )
@@ -53,6 +54,19 @@ class UserAccountSerializer(serializers.ModelSerializer):
         
         instance.save()
         return instance
+    
+class UpdateUserAccountSerializer(serializers.ModelSerializer):
+    class Meta :
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            # 'birth_date',
+            'is_email_verified',
+        ]
+        extra_kwargs = {
+            'is_email_verified' : {'write_only' : True},
+            }
         
 
 class UserAccountPubliqueSerializer(serializers.ModelSerializer):
