@@ -1,6 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
-from constants import DJANGO_SECRET_KEY, POSTGRES_USER, POSTGRES_DB_NAME, POSTGRES_PASSWORD, POSTGRES_HOST, GMAIL_STMP_PW, GMAIL_STMP_USERNAME, DEBUG as DBG
+from constants import DJANGO_SECRET_KEY, POSTGRES_USER, POSTGRES_DB_NAME, POSTGRES_PASSWORD, POSTGRES_HOST, GMAIL_STMP_PW, GMAIL_STMP_USERNAME, POSTGRES_PORT, DEBUG as DBG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # Add this line
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -114,22 +114,22 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB_NAME'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('POSTGRES_HOST'),
-        'PORT': '5432',
+        'NAME': POSTGRES_DB_NAME,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
+        'HOST': POSTGRES_HOST,
+        'PORT': POSTGRES_PORT,
     }
 }   
 
-# Configuration pour les domaines autorisés pour les cookies CSRF
-CSRF_COOKIE_DOMAIN = 'windam-backend.onrender.com'  # Remplacez par votre domaine principal
-CSRF_TRUSTED_ORIGINS = ['https://windam-backend.onrender.com', "http://localhost:3000"]  # Ajoutez tous les sous-domaines nécessaires
+# # Configuration pour les domaines autorisés pour les cookies CSRF
+# CSRF_COOKIE_DOMAIN = 'windam-backend.onrender.com'  # Remplacez par votre domaine principal
+# CSRF_TRUSTED_ORIGINS = ['https://windam-backend.onrender.com', "http://localhost:3000"]  # Ajoutez tous les sous-domaines nécessaires
 
-# Paramètres de sécurité supplémentaires pour les cookies
-CSRF_COOKIE_SECURE = True  # Assurez-vous que c'est True en production
-CSRF_COOKIE_HTTPONLY = True
-CSRF_USE_SESSIONS = True
+# # Paramètres de sécurité supplémentaires pour les cookies
+# CSRF_COOKIE_SECURE = True  # Assurez-vous que c'est True en production
+# CSRF_COOKIE_HTTPONLY = True
+# CSRF_USE_SESSIONS = True
 
 
 
