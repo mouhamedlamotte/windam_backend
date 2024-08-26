@@ -10,7 +10,6 @@ from windam_backend import settings
 def get_user(token_key):
     try:
         decoded = jwt.decode(token_key, settings.SECRET_KEY, algorithms=['HS256'])
-        print("decoded", decoded)
         user = User.objects.get(pk=decoded['user_id'])
         return user
     except jwt.ExpiredSignatureError:
@@ -24,8 +23,6 @@ class TokenAuthMiddleware(BaseMiddleware):
     async def __call__(self, scope, receive, send):
         headers = dict(scope['headers'])
         token_key = None
-        print("headers", headers)
-
         if b'authorization' in headers:
             try:
                 scheme, token_key = headers[b'authorization'].decode().split()
@@ -37,7 +34,6 @@ class TokenAuthMiddleware(BaseMiddleware):
                 return await self.inner(scope, receive, send)
         if b'cookie' in headers:
             token_key = headers[b'cookie'].decode().split('=')[-1]
-        print("token_key", token_key)
 
         if token_key is None:
             raise ValueError("No token provided")

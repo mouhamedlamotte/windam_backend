@@ -34,7 +34,6 @@ class SendOTP(generics.CreateAPIView):
         otp_code = hotp.at(0)
         
 
-        print("Your HMAC-based OTP:", otp_code)
 
         try :
             send_mail(

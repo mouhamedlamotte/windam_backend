@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # Add this line
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -92,17 +92,17 @@ WSGI_APPLICATION = 'windam_backend.wsgi.application'
 
 ASGI_APPLICATION = 'windam_backend.asgi.application'
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer'
-    }
-}
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer'
+#     }
+# }
 
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('redis://localhost:6379')] if DEBUG else [('redis://default:rzNWxHlgHFJgclsaxugVOjMePBMUDiTA@junction.proxy.rlwy.net:22756')],
+            'hosts': [('redis://default:rzNWxHlgHFJgclsaxugVOjMePBMUDiTA@junction.proxy.rlwy.net:22756')],
         }   
     }
 }

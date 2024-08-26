@@ -71,10 +71,3 @@ class ChatroomMessagesView(generics.ListAPIView):
             'chats': chats,
             'chatroom': chatroom_data
         })
-
-    def get(self, request, *args, **kwargs):
-        headers = self.request.headers
-        print(headers)
-        user = request.user
-        print(user)
-        return super().get(request, *args, **kwargs)
