@@ -17,7 +17,7 @@ DEBUG = DBG
 
 AUTH_USER_MODEL = 'accounts.User'
 
-ALLOWED_HOSTS = ["windam-backend.onrender.com", "localhost"]
+ALLOWED_HOSTS = ["windam-backend.onrender.com", "localhost", 'windampro.vercel.app']
 
 # Application definition
 
