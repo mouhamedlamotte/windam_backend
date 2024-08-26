@@ -102,7 +102,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('redis://localhost:6379')] if DEBUG else [('redis://default:SuiURtrTNvbcqQzIEeSWIanKqGzRayhP@viaduct.proxy.rlwy.net:37672')],
+            'hosts': [('redis://localhost:6379')] if DEBUG else [('redis://default:rzNWxHlgHFJgclsaxugVOjMePBMUDiTA@junction.proxy.rlwy.net:22756')],
         }   
     }
 }

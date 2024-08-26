@@ -25,11 +25,6 @@ class ChatRoomConsumer(WebsocketConsumer):
         sender = self.user
         msg_type = text_data_json.get('type', 'text')
         content = text_data_json.get('content', None)
-        print(
-            sender,
-            msg_type,
-            content
-        )
         message = ChatroomMessage.objects.create(
             sender=sender,
             type= msg_type,
