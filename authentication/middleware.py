@@ -1,3 +1,4 @@
+from urllib.parse import parse_qs
 from django.contrib.auth.models import AnonymousUser
 from channels.db import database_sync_to_async
 from accounts.models import User
@@ -32,9 +33,10 @@ class TokenAuthMiddleware(BaseMiddleware):
                 # Log the invalid token or scheme
                 scope['user'] = AnonymousUser()
                 return await self.inner(scope, receive, send)
-        if b'cookie' in headers:
-            token_key = headers[b'cookie'].decode().split('=')[-1]
-
+       
+        query_string = parse_qs(scope['query_string'].decode())
+        token_key = query_string.get('token', [None])[0]
+        print('token_key', token_key)
         if token_key is None:
             raise ValueError("No token provided")
         else:
